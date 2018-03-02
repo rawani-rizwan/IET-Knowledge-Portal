@@ -1,0 +1,99 @@
+<%@ Master Language="VB" CodeFile="Faculty.master.vb" Inherits="Faculty" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Untitled Page</title>
+    <style type="text/css">
+    .adjustedZIndex {
+     z-index: 10;
+     }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <asp:Panel ID="HeaderPanel" runat="server" Height="159px" Style="z-index: 10; left: 10px;
+            position: absolute; top: 10px" Width="1188px">
+            <asp:Image ID="LeftImage" runat="server" Height="159px" ImageUrl="~/images/Logo.gif"
+                Style="position: absolute; top: 0px" Width="225px" />
+            <asp:Image ID="CentreImage" runat="server" Height="123px" ImageUrl="~/images/HeaderText.jpg"
+                Style="left: 230px; position: absolute; top: 0px" Width="716px" />
+            <asp:Image ID="RightImage" runat="server" Height="159px" ImageUrl="~/images/Portal Logo.gif"
+                Style="left: 951px; position: absolute; top: 0px" Width="248px" />
+            <asp:Menu ID="MainMenu" runat="server" BackColor="#B5C7DE" DynamicHorizontalOffset="2"
+                Font-Names="Verdana" Font-Size="0.8em" ForeColor="#284E98" Height="30px" Orientation="Horizontal"
+                StaticSubMenuIndent="10px" Style="z-index: 10; left: 230px; position: absolute;
+                top: 128px" Width="716px">
+                <StaticMenuStyle BackColor="#B5C7DE" />
+                <StaticSelectedStyle BackColor="#B5C7DE" />
+                <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
+                <DynamicMenuStyle BackColor="#B5C7DE" CssClass="adjustedZIndex" />
+                <DynamicSelectedStyle BackColor="#B5C7DE" />
+                <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
+                <Items>
+                    <asp:MenuItem NavigateUrl="~/FacultyHome.aspx" Text="Home" Value="Home"></asp:MenuItem>
+                    <asp:MenuItem Text="Accounts" Value="Accounts">
+                        <asp:MenuItem NavigateUrl="~/AccountSettingsFaculty.aspx" Text="My Account" Value="My Account">
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="Portal Members" Value="Portal Members">
+                            <asp:MenuItem NavigateUrl="~/AdministratorAccountsFaculty.aspx" Text="Administrator Accounts"
+                                Value="Administrator Accounts"></asp:MenuItem>
+                            <asp:MenuItem Text="Faculty Accounts" Value="Faculty Accounts" NavigateUrl="~/FacultyAccountsFaculty.aspx"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/StudentAccountsFaculty.aspx" Text="Student Accounts"
+                                Value="Student Accounts"></asp:MenuItem>
+                        </asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Knowledge Sharing" Value="Knowledge Sharing">
+                        <asp:MenuItem NavigateUrl="~/UploadFaculty.aspx" Text="Upload" Value="Upload"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/DownloadsFaculty.aspx" Text="Downloads" Value="Downloads">
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="Useful Links" Value="Useful Links" NavigateUrl="~/UsefulLinksFaculty.aspx"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Notices" Value="Notices">
+                        <asp:MenuItem Text="View Notices" Value="View Notices" NavigateUrl="~/ViewNoticesFaculty.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="New Notice" Value="New Notice" NavigateUrl="~/AddNoticeFaculty.aspx"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Discussion Forum" Value="Discussion Forum" NavigateUrl="~/DiscussionForumFaculty.aspx"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/SignOut.aspx" Text="Sign Out" Value="Sign Out"></asp:MenuItem>
+                </Items>
+            </asp:Menu>
+        </asp:Panel>
+        <asp:Panel ID="LeftPanel" runat="server" Height="353px" Style="left: 10px; position: absolute;
+            top: 180px" Width="225px">
+            <asp:Label ID="AccountInfo" runat="server" BackColor="#507CD1" ForeColor="White"
+                Style="vertical-align: middle; text-align: center" Text="Account Information"
+                Width="225px"></asp:Label>
+            <asp:Image ID="Profile_Picture" runat="server" Height="180px" ImageUrl="~/images/profile pictures/no_profile.jpg"
+                Style="left: 30px; position: absolute; top: 70px" Width="160px" />
+            <asp:HyperLink ID="ChangePicture" runat="server" Font-Size="Small" ForeColor="Blue"
+                NavigateUrl="~/ChangeFacultyProfilePicture.aspx" Style="left: 30px; vertical-align: middle;
+                position: absolute; top: 252px; text-align: center" Width="160px">Change Picture</asp:HyperLink>
+            <asp:Label ID="LoggedInLabel" runat="server" Style="left: 0px; vertical-align: middle;
+                position: absolute; top: 30px; text-align: center" Width="225px"></asp:Label>
+            <asp:Label ID="Designation" runat="server" Style="left: 0px; vertical-align: middle;
+                position: absolute; top: 320px; text-align: center" Width="225px"></asp:Label>
+            <asp:Label ID="Name" runat="server" Style="left: 0px; vertical-align: middle; position: absolute;
+                top: 280px; text-align: center" Width="225px"></asp:Label>
+        </asp:Panel>
+        <asp:Panel ID="ContentPanel" runat="server" Height="353px" Style="left: 245px; position: absolute;
+            top: 180px" Width="706px">
+            <asp:ContentPlaceHolder ID="Content" runat="server">
+            </asp:ContentPlaceHolder>
+        </asp:Panel>
+        <asp:Panel ID="RightPanel" runat="server" Height="353px" Style="left: 961px; position: absolute;
+            top: 180px" Width="248px">
+            <asp:Label ID="NewsHeading" runat="server" BackColor="#507CD1" ForeColor="White"
+                Style="left: 0px; vertical-align: middle; position: absolute; top: 0px; text-align: center"
+                Text="News & Updates" Width="248px"></asp:Label>
+            <asp:Panel ID="NewsPanel" runat="server" Height="325px" Style="left: 16px; position: absolute;
+                top: 27px" Width="232px">
+            </asp:Panel>
+        </asp:Panel>
+    </div>
+    </form>
+</body>
+</html>

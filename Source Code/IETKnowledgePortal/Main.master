@@ -1,0 +1,145 @@
+<%@ Master Language="VB" CodeFile="Main.master.vb" Inherits="Main" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Untitled Page</title>
+    <style type="text/css">
+    .adjustedZIndex {
+     z-index: 10;
+     }
+    </style>
+</head>
+<body onload="changeImage()">
+    <form id="form1" runat="server">
+    <div>
+        <asp:SqlDataSource ID="StudentInfo" runat="server" ConnectionString="<%$ ConnectionStrings:StudentConnection %>" SelectCommand="SELECT * FROM [Student]"></asp:SqlDataSource>
+        <asp:Panel ID="HeaderPanel" runat="server" Height="159px" Style="left: 10px; position: absolute;
+            top: 10px; z-index: 10;" Width="1188px">
+            <asp:Image ID="LeftImage" runat="server" style="position: absolute; top: 0px;" Height="159px" Width="225px" ImageUrl="~/images/Logo.gif" />
+            <asp:Image ID="CentreImage" runat="server" style="position: absolute; left: 230px; top: 0px;" Height="123px" Width="716px" ImageUrl="~/images/HeaderText.jpg"/>
+            <asp:Image ID="RightImage" runat="server" style="position: absolute; top: 0px; left: 951px;" Height="159px" Width="248px" ImageUrl="~/images/Portal Logo.gif"/>
+            <asp:Menu ID="MainMenu" runat="server" BackColor="#B5C7DE" DynamicHorizontalOffset="2"
+                Font-Names="Verdana" Font-Size="0.8em" ForeColor="#284E98" Height="30px" Orientation="Horizontal"
+                StaticSubMenuIndent="10px" Style="left: 230px; position: absolute; top: 128px; z-index: 10;"
+                Width="716px">
+                <StaticSelectedStyle BackColor="#507CD1" />
+                <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
+                <DynamicMenuStyle BackColor="#B5C7DE" CssClass="adjustedZIndex" />
+                <DynamicSelectedStyle BackColor="#507CD1" />
+                <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
+                <Items>
+                    <asp:MenuItem Text="Home" Value="Home" NavigateUrl="~/Home.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="About DAVV" Value="About DAVV" NavigateUrl="~/AboutDavv.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="About IET" Value="About IET" NavigateUrl="~/AboutIet.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Terms of Use" Value="Terms of Use" NavigateUrl="~/TermsOfUse.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Photo Gallery" Value="Photo Gallery" NavigateUrl="~/PhotoGallery.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Contact Us" Value="Contact Us" NavigateUrl="~/ContactUs.aspx"></asp:MenuItem>
+                </Items>
+            </asp:Menu>
+        </asp:Panel>
+        
+        <asp:Panel ID="LeftPanel" runat="server" Style="left: 10px; position: absolute; top: 180px"
+            Width="225px" Height="353px">
+            <asp:Label ID="NewsHeading" runat="server" Style="left: 0px; position: absolute;
+                top: 0px; vertical-align: middle; text-align: center;" Text="News & Updates" BackColor="#507CD1" ForeColor="White" Width="225px"></asp:Label>
+            <asp:Panel ID="NewsPanel" runat="server" Height="325px" Style="left: 0px; position: absolute;
+                top: 27px" Width="225px">
+            </asp:Panel>
+            </asp:Panel>
+        
+        <asp:Panel ID="ContentPanel" runat="server" Height="353px" Style="left: 245px; position: absolute;
+            top: 180px" Width="706px">
+            <asp:ContentPlaceHolder ID="Content" runat="server">
+            </asp:ContentPlaceHolder>
+        </asp:Panel>
+        
+        <asp:Panel ID="RightPanel" runat="server" Height="174px" Style="left: 961px; position: absolute;
+            top: 180px" Width="248px">
+            <asp:Label ID="randomimageLabel" runat="server" Style="left: 0px; position: absolute;
+                top: 0px; vertical-align: middle; text-align: center;" Text="Campus @ IET" BackColor="#507CD1" ForeColor="White" Width="248px"></asp:Label>
+            <img id="randomimage"  style="left: 0px; width: 248px; position: absolute;
+                top: 24px; height: 149px" src="images/random images/1.jpg" alt="no image" />
+        </asp:Panel>
+        
+        <asp:Panel ID="LoginPanel" runat="server" Height="212px" Style="left: 961px; position: absolute;
+            top: 367px" Width="248px">
+            <asp:Login ID="Login" runat="server" BackColor="#EFF3FB" BorderColor="#B5C7DE" BorderPadding="4"
+                BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em"
+                ForeColor="#333333" PasswordRecoveryText="Forgot Password?" Width="238px" Height="140px" PasswordRecoveryUrl="~/ForgotPassword.aspx" FailureText="Invalid user name or password!" CreateUserText="Sign Up" CreateUserUrl="~/SignUp.aspx" DisplayRememberMe="False">
+                <TextBoxStyle Font-Size="0.8em" />
+                <LoginButtonStyle BackColor="White" BorderColor="#507CD1" BorderStyle="Solid" BorderWidth="1px"
+                    Font-Names="Verdana" Font-Size="0.8em" ForeColor="#284E98" />
+                <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
+                <TitleTextStyle BackColor="#507CD1" Font-Bold="True" Font-Size="0.9em" ForeColor="White" />
+                <HyperLinkStyle ForeColor="Blue" />
+            </asp:Login>
+            <asp:RadioButtonList ID="UserType" runat="server" BackColor="#EFF3FB" BorderColor="#B5C7DE"
+                RepeatColumns="3" Width="248px" style="border-top-width: 1px; border-left-width: 1px; border-left-color: #b5c7de; border-bottom-width: 1px; border-bottom-color: #b5c7de; border-top-color: #b5c7de; border-right-width: 1px; border-right-color: #b5c7de;" Height="31px" BorderStyle="Solid" BorderWidth="1px">
+                <asp:ListItem Selected="True">Student</asp:ListItem>
+                <asp:ListItem>Faculty</asp:ListItem>
+                <asp:ListItem>Administrator</asp:ListItem>
+            </asp:RadioButtonList>
+        </asp:Panel>
+            
+        
+        
+        <asp:Panel ID="QuickLinksPanel" runat="server" Height="126px" Style="left: 245px;
+            position: absolute; top: 544px" Width="706px">
+            <asp:Label ID="QuickLinksLabel" runat="server" Style="left: 7px; vertical-align: middle;
+                position: absolute; top: 6px; text-align: center;" Text="Quick Links:" Width="706px" BackColor="#507CD1" ForeColor="White"></asp:Label>
+            <asp:HyperLink ID="IEEELink" runat="server" Style="font-size: 0.8em; left: 10px;
+                font-family: Verdana; position: absolute; top: 37px; color: blue;" NavigateUrl="http://www.ieee.org/index.html" Target="_blank">IEEE  Website</asp:HyperLink>
+            <asp:Label ID="Separator1" runat="server" Style="left: 119px; position: absolute; top: 35px; vertical-align: middle; text-align: center;"
+                Text="|"></asp:Label>             
+            <asp:HyperLink ID="AICTELink" runat="server" Style="font-size: 0.8em; left: 156px;
+                font-family: Verdana; position: absolute; top: 37px; color: blue;" NavigateUrl="http://www.aicte-india.org/" Target="_blank">AICTE  Website</asp:HyperLink>
+            <asp:Label ID="Separator2" runat="server" Style="left: 276px; vertical-align: middle;
+                position: absolute; top: 35px; text-align: center" Text="|"></asp:Label>   
+            <asp:HyperLink ID="DAVVLink" runat="server" Style="font-size: 0.8em; left: 311px;
+                font-family: Verdana; position: absolute; top: 37px; color: blue;" NavigateUrl="http://www.dauniv.ac.in/" Target="_blank">DAVV  Website</asp:HyperLink>
+            <asp:Label ID="Separator3" runat="server" Style="left: 426px; vertical-align: middle;
+                position: absolute; top: 35px; text-align: center" Text="|"></asp:Label>
+            <asp:HyperLink ID="IETLink" runat="server" Style="font-size: 0.8em; left: 463px;
+                font-family: Verdana; position: absolute; top: 37px; color: blue;" NavigateUrl="http://www.iet.dauniv.ac.in/" Target="_blank">IET Website</asp:HyperLink>
+            <asp:Label ID="Separator4" runat="server" Style="left: 561px; vertical-align: middle;
+                position: absolute; top: 35px; text-align: center" Text="|"></asp:Label>
+            <asp:HyperLink ID="ResultLink" runat="server" Style="font-size: 0.8em; left: 595px;
+                font-family: Verdana; position: absolute; top: 37px; color: blue;" NavigateUrl="http://results.dauniv.ac.in/" Target="_blank">Results Centre</asp:HyperLink>
+            <asp:Label ID="Description" runat="server" Style="left: 0px; vertical-align: middle;
+                position: absolute; top: 65px; text-align: center" Text="Website developed by Mohd. Rizwan Rawani, Nupoor Deobhakta, Shubham Agrawal & Tanya Jain."
+                Width="706px"></asp:Label>
+            <asp:Label ID="CopyrightLabel" runat="server" Style="left: 0px; vertical-align: middle;
+                position: absolute; top: 98px; text-align: center" Text="Copyright © 2010 Institute of Engineering & Technology, DAVV, Indore.  All Rights Reserved."
+                Width="706px"></asp:Label>
+        </asp:Panel>
+        
+        
+       </div>
+    </form>
+    <script type="text/javascript">
+    var c=0
+    var s
+    function changeImage(){
+    if (c%11==0){document.getElementById('randomimage').src = "images/random images/1.jpg";}
+    if (c%11==1){document.getElementById('randomimage').src = "images/random images/2.jpg";}
+    if (c%11==2){document.getElementById('randomimage').src = "images/random images/3.jpg";}
+    if (c%11==3){document.getElementById('randomimage').src = "images/random images/4.jpg";}
+    if (c%11==4){document.getElementById('randomimage').src = "images/random images/5.jpg";}
+    if (c%11==5){document.getElementById('randomimage').src = "images/random images/6.jpg";}
+    if (c%11==6){document.getElementById('randomimage').src = "images/random images/7.jpg";}
+    if (c%11==7){document.getElementById('randomimage').src = "images/random images/8.jpg";}
+    if (c%11==8){document.getElementById('randomimage').src = "images/random images/9.jpg";}
+    if (c%11==9){document.getElementById('randomimage').src = "images/random images/10.jpg";}
+    if (c%11==10){document.getElementById('randomimage').src ="images/random images/11.jpg";}
+    
+    
+    c=c+1
+    s=setTimeout("changeImage()",2000)}
+    </script>
+    
+</body>
+</html>
